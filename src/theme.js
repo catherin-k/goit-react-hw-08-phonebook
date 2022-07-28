@@ -2,9 +2,11 @@ export const theme = {
   colors: {
     white: '#fff',
     black: '#000',
-    text: '#7c7777',
+    text: '#2a2a2a',
     violet: '	#9370DB',
     lavender: '	#E6E6FA',
+    blue: ' #86a8e3',
+    red: '#d30303',
     backGround: '#e1e6eb',
   },
   space: [0, 2, 4, 8, 16, 32, 64],
@@ -25,7 +27,8 @@ export const theme = {
   },
   borders: {
     none: 'none',
-    normal: '1px solid #e9edf3',
+    normal: '1px solid #7d7e81',
+    focus: '1px solid #9817b1',
   },
   radii: {
     none: '0',
@@ -34,5 +37,6 @@ export const theme = {
   },
   shadows: {
     boxShadow: '4px 6px 14px -3px #262626',
+    lineShadow: '-3px 3px 15px -6px #5C75B5',
   },
 };
