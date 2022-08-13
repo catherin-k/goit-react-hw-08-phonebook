@@ -5,6 +5,7 @@ import { Title } from './App.styled';
 import { FormContacts } from './formContacts/FormContacts';
 import { ContactList } from './contactsList/ContactsList';
 import { Filter } from './filter/Filter';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const initialContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -14,7 +15,7 @@ const initialContacts = [
 ];
 
 export const App = () => {
-  const [contacts, setContacts] = useState(initialContacts);
+  const [contacts, setContacts] = useLocalStorage('contacts', initialContacts);
   const [filter, setFilter] = useState('');
 
   const submitForm = (values, { resetForm }) => {
@@ -35,6 +36,7 @@ export const App = () => {
 
   const getVisibleContacts = () => {
     const normalizedFilter = filter.toLowerCase();
+    console.log('filter getvisible');
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
@@ -42,7 +44,6 @@ export const App = () => {
 
   const deleteContact = id => {
     setContacts(prevState => {
-      console.log(prevState);
       return prevState.filter(contact => contact.id !== id);
     });
   };
