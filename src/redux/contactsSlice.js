@@ -29,6 +29,8 @@ const contactsSlice = createSlice({
   },
 });
 
+// Persist
+
 const persistConfig = {
   key: 'contacts',
   storage,
@@ -44,30 +46,3 @@ export const { addContact, deleteContact, filterValue } = contactsSlice.actions;
 // Selectors
 export const getContacts = state => state.contacts.items;
 export const getFilter = state => state.contacts.filter;
-// const clicksSlice = createSlice({
-//   name: 'clicks',
-//   initialState: { value: 0 },
-//   reducers: {
-//     increment(state, action) {npm start
-//       state.value = state.value + action.payload;
-//     },
-//     reset(state) {
-//       state.value = 0;
-//     },
-//   },
-// });
-
-// export const clicksReducer = clicksSlice.reducer;
-// export const { increment, reset } = clicksSlice.actions;
-// export const getClicks = state => state.clicks.value;
-
-// export const increment = createAction('clicks/increment');
-
-// const clicksReducer = createReducer(
-//   { value: 12 },
-//   {
-//     [increment]: (state, action) => {
-//       state.value = state.value + action.payload;
-//     },
-//   }
-// );
