@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
 import { Formik, ErrorMessage } from 'formik';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   FormBox,
   Label,
@@ -7,21 +8,28 @@ import {
   SubmitBtn,
   ErrText,
 } from './FormContacs.styled';
+import {
+  useAddContactMutation,
+  useGetContactsQuery,
+} from '../../redux/contactsApiSlice';
 
-import * as Yup from 'yup';
+export const FormContacts = () => {
+  const [addContact, { isLoading }] = useAddContactMutation();
+  const { data: contacts } = useGetContactsQuery();
 
-const validationSchema = Yup.object({
-  name: Yup.string().required(),
-  number: Yup.string().required(),
-});
+  const submitForm = ({ name, phone }, { resetForm }) => {
+    console.log('Why?');
+    contacts.some(item => item.name.toLowerCase() === name.toLowerCase())
+      ? toast.warn(` ${name} is already in contacts`)
+      : addContact({ name, phone });
 
-export const FormContacts = ({ submitForm }) => {
+    resetForm();
+  };
+
+  console.log(contacts);
+
   return (
-    <Formik
-      initialValues={{ name: '', number: '' }}
-      onSubmit={submitForm}
-      validationSchema={validationSchema}
-    >
+    <Formik initialValues={{ name: '', phone: '' }} onSubmit={submitForm}>
       <FormBox>
         <Label htmlFor="name">
           Name
@@ -35,27 +43,28 @@ export const FormContacts = ({ submitForm }) => {
           ></Input>
           <ErrorMessage name="name" render={msg => <ErrText>{msg}</ErrText>} />
         </Label>
-        <Label htmlFor="number">
+        <Label htmlFor="phone">
           Number
           <Input
             type="tel"
-            name="number"
+            name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             placeholder="phone number"
           ></Input>
-          <ErrorMessage
-            name="number"
-            render={msg => <ErrText>{msg}</ErrText>}
-          />
+          <ErrorMessage name="phone" render={msg => <ErrText>{msg}</ErrText>} />
         </Label>
-        <SubmitBtn type="submit">Add contact</SubmitBtn>
+        <SubmitBtn type="submit" disabled={isLoading}>
+          Add contact
+        </SubmitBtn>
+        <ToastContainer
+          autoClose={3000}
+          position="top-center"
+          theme="colored"
+          pauseOnHover
+        />
       </FormBox>
     </Formik>
   );
-};
-
-FormContacts.propTypes = {
-  submitForm: PropTypes.func,
 };

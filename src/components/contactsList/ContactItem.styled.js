@@ -14,6 +14,14 @@ export const Item = styled.li`
   }
 `;
 
+export const Phone = styled.p`
+  margin-right: auto;
+  margin-left: auto;
+`;
+export const Name = styled.p`
+  min-width: 40%;
+  /* margin-left: 200px; */
+`;
 export const DeleteBtn = styled.button`
   padding: ${p => p.theme.space[2]}px;
   border-radius: ${p => p.theme.radii.normal};
