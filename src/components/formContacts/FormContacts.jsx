@@ -8,6 +8,7 @@ import {
   SubmitBtn,
   ErrText,
 } from './FormContacs.styled';
+
 import {
   useAddContactMutation,
   useGetContactsQuery,
@@ -18,15 +19,18 @@ export const FormContacts = () => {
   const { data: contacts } = useGetContactsQuery();
 
   const submitForm = ({ name, phone }, { resetForm }) => {
-    console.log('Why?');
-    contacts.some(item => item.name.toLowerCase() === name.toLowerCase())
+    // Check for the same name
+    const contactsUnicName = contacts.some(
+      item => item.name.toLowerCase() === name.toLowerCase()
+    );
+
+    // Add contact by condition
+    contactsUnicName
       ? toast.warn(` ${name} is already in contacts`)
       : addContact({ name, phone });
 
     resetForm();
   };
-
-  console.log(contacts);
 
   return (
     <Formik initialValues={{ name: '', phone: '' }} onSubmit={submitForm}>
