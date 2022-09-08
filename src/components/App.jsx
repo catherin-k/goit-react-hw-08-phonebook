@@ -1,17 +1,24 @@
-import { Box } from './Box';
-import { Title } from './App.styled';
-import { FormContacts } from './formContacts/FormContacts';
-import { ContactList } from './contactsList/ContactsList';
-import { Filter } from './filter/Filter';
+import { lazy } from 'react';
+
+import { Routes, Route } from 'react-router-dom';
+import { ShareLayout } from './shareLayout/ShareLayout';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 export const App = () => {
   return (
-    <Box bg="lavender" width="40%" mx="auto" p="4" my="4" boxShadow="boxShadow">
-      <Title>Phonebook</Title>
-      <FormContacts />
-      <Title>Contacts</Title>
-      <Filter />
-      <ContactList />
-    </Box>
+    <>
+      <Routes>
+        <Route path="/" element={<ShareLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
