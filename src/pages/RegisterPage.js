@@ -8,28 +8,34 @@ import {
   SubmitBtn,
   ErrText,
 } from '../components/formContacts/FormContacs.styled';
+import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
+
+const validationSchema = yup.object().shape({
+  name: yup.string().required('Name is required'),
+  password: yup
+    .string()
+    .min(7, 'Password must be at least 8 characters long')
+    .required('Password is required'),
+  email: yup.string().email().required('Email is required'),
+});
 
 const RegisterPage = () => {
-  const submitForm = ({ email, password, name }, { resetForm }) => {
-    console.log(email);
-    console.log(password);
-    console.log(name);
-    // Check for the same name
-    // const contactsUnicName = contacts.some(
-    //   item => item.name.toLowerCase() === name.toLowerCase()
-    // );
+  const dispatch = useDispatch();
 
-    // Add contact by condition
-    // contactsUnicName
-    //   ? toast.warn(` ${name} is already in contacts`)
-    //   : addContact({ name, phone });
-
+  const submitForm = (values, { resetForm }) => {
+    // console.log(email);
+    // console.log(password);
+    // console.log(name);
+    dispatch(authOperations.register(values));
     resetForm();
   };
 
   return (
     <Formik
-      initialValues={{ email: '', password: '', name: '' }}
+      initialValues={{ name: '', email: '', password: '' }}
+      validationSchema={validationSchema}
       onSubmit={submitForm}
     >
       <FormBox autoComplete="off">

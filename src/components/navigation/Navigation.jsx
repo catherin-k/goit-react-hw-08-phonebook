@@ -5,7 +5,7 @@ export const Navigation = () => {
   return (
     <nav>
       <LinkStyled to="/">Home</LinkStyled>
-      {/* <Link>Contacts</Link> */}
+      <LinkStyled to="/contacts">Contacts</LinkStyled>
     </nav>
   );
 };
