@@ -1,13 +1,7 @@
 import { Formik, ErrorMessage } from 'formik';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  FormBox,
-  Label,
-  Input,
-  SubmitBtn,
-  ErrText,
-} from '../components/formContacts/FormContacs.styled';
+import { FormBox, Label, Input, SubmitBtn, ErrText } from './Pages.styled';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';

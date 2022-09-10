@@ -16,16 +16,16 @@ export const FormContacts = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(contactsSelectors.getContactsList);
 
-  const submitForm = (value, { resetForm }) => {
+  const submitForm = ({ name, number }, { resetForm }) => {
     // Check for the same name
     const contactsUnicName = contacts.some(
-      item => item.name.toLowerCase() === value.name.toLowerCase()
+      item => item.name.toLowerCase() === name.toLowerCase()
     );
 
     // Add contact by condition
     contactsUnicName
-      ? toast.warn(` ${value.name} is already in contacts`)
-      : dispatch(contactsOperations.addContacts(value));
+      ? toast.warn(` ${name} is already in contacts`)
+      : dispatch(contactsOperations.addContacts({ name, number }));
 
     resetForm();
   };

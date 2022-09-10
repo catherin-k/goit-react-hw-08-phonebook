@@ -10,7 +10,6 @@ export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(contactsSelectors.getContactsList);
   const filterValue = useSelector(contactsSelectors.getFilter);
-  console.log(contacts);
 
   useEffect(() => {
     dispatch(contactsOperations.getContacts());

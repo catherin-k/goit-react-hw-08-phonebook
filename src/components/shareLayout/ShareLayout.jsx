@@ -1,17 +1,18 @@
 import { Outlet } from 'react-router-dom';
-import { Box } from '../Box';
+
 import { AppBar } from 'components/appBar/AppBar';
 import { Suspense } from 'react';
+import { Container } from './ShareLayout.styled';
 
 export const ShareLayout = () => {
   return (
     <>
-      <Box maxWidth={1440} margin="0, auto" px={16}>
+      <Container>
         <AppBar />
-        <Suspense>
+        <Suspense fallback={null}>
           <Outlet />
         </Suspense>
-      </Box>
+      </Container>
     </>
   );
 };

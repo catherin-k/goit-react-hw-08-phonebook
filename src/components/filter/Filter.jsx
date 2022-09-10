@@ -9,7 +9,6 @@ export const Filter = () => {
   const filter = useSelector(contactsSelectors.getFilter);
 
   const filterInput = e => {
-    console.log(e.target.value);
     dispatch(changeFilter(e.target.value));
   };
 

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
 export const FormBox = styled(Form)`
+  margin: 0 auto;
+  width: 40%;
   display: flex;
   flex-direction: column;
   padding: ${p => p.theme.space[4]}px;

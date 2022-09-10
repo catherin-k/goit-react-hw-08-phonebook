@@ -1,13 +1,7 @@
 import { Formik, ErrorMessage } from 'formik';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  FormBox,
-  Label,
-  Input,
-  SubmitBtn,
-  ErrText,
-} from '../components/formContacts/FormContacs.styled';
+import { FormBox, Label, Input, SubmitBtn, ErrText } from './Pages.styled';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
@@ -15,9 +9,6 @@ const LoginPage = () => {
   const dispatch = useDispatch();
 
   const submitForm = (values, { resetForm }) => {
-    // console.log(email);
-    // console.log(password);
-    // console.log(name);
     dispatch(authOperations.logIn(values));
     resetForm();
   };
