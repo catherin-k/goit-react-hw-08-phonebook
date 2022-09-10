@@ -19,9 +19,6 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
 
   const submitForm = (values, { resetForm }) => {
-    // console.log(email);
-    // console.log(password);
-    // console.log(name);
     dispatch(authOperations.register(values));
     resetForm();
   };
@@ -68,5 +65,3 @@ const RegisterPage = () => {
   );
 };
 export default RegisterPage;
-
-// disabled={isLoading}

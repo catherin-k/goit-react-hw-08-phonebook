@@ -20,7 +20,6 @@ export const Phone = styled.p`
 `;
 export const Name = styled.p`
   min-width: 40%;
-  /* margin-left: 200px; */
 `;
 export const DeleteBtn = styled.button`
   padding: ${p => p.theme.space[2]}px;
