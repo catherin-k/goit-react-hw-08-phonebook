@@ -5,7 +5,7 @@ const HomePage = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <div>
-      <h1>Wellcome to phonebook service!</h1>
+      <h1>Wellcome to phonebook service</h1>
       {!isLoggedIn ? (
         <>
           <p>If this is your first visit, please register</p>
