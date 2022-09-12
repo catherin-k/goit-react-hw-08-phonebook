@@ -21,48 +21,50 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div>
       {isRefreshingUser ? (
         <h1>Loading...</h1>
       ) : (
-        <Routes>
-          <Route path="/" element={<ShareLayout />}>
-            <Route
-              index
-              element={
-                <PublicRoute>
-                  <HomePage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="login"
-              element={
-                <PublicRoute restricted redirectTo="/contacts">
-                  <LoginPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="register"
-              element={
-                <PublicRoute restricted redirectTo="/contacts">
-                  <RegisterPage />
-                </PublicRoute>
-              }
-            />
+        <>
+          <Routes>
+            <Route path="/" element={<ShareLayout />}>
+              <Route
+                index
+                element={
+                  <PublicRoute>
+                    <HomePage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="login"
+                element={
+                  <PublicRoute restricted redirectTo="/contacts">
+                    <LoginPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="register"
+                element={
+                  <PublicRoute restricted redirectTo="/contacts">
+                    <RegisterPage />
+                  </PublicRoute>
+                }
+              />
 
-            <Route
-              path="contacts"
-              element={
-                <PrivateRoute redirectTo="/login">
-                  <ContactsPage />
-                </PrivateRoute>
-              }
-            />
-          </Route>
-        </Routes>
+              <Route
+                path="contacts"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <ContactsPage />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+          </Routes>
+        </>
       )}
-    </>
+    </div>
   );
 };
