@@ -14,15 +14,15 @@ const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isRefreshingUser = useSelector(authSelectors.getIsRefreshingUser);
+  const isRefreshing = useSelector(authSelectors.getIsRefreshingUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
   return (
-    <div>
-      {isRefreshingUser ? (
+    <>
+      {isRefreshing ? (
         <h1>Loading...</h1>
       ) : (
         <>
@@ -65,6 +65,6 @@ export const App = () => {
           </Routes>
         </>
       )}
-    </div>
+    </>
   );
 };
